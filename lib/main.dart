@@ -1,70 +1,47 @@
 import 'package:flutter/material.dart';
-// import 'package:myapp/column_widget.dart';
-// import 'package:myapp/ row_widget.dart';
-import 'package:myapp/ basic_widget.dart';
+import 'package:myapp/screens/login_screen.dart';
+import 'package:myapp/screens/signup_screen.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const JustduitApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class JustduitApp extends StatelessWidget {
+  const JustduitApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Praktikum Mobile Lanjut',
+      debugShowCheckedModeBanner: false,
+      title: 'Justduit',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        scaffoldBackgroundColor: const Color(0xFFF3F6F8), // abu-abu muda
         useMaterial3: true,
-      ),
-      home: const BasicWidget(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1E88FF)),
+        inputDecorationTheme: InputDecorationTheme(
+          isDense: true,
+          filled: true,
+          fillColor: Colors.white,
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Color(0xFFE0E0E0)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+            borderSide: const BorderSide(color: Color(0xFF1E88FF)),
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+      initialRoute: LoginScreen.route,
+      routes: {
+        '/': (_) => const LoginScreen(), // default = Sign In
+        '/signin': (_) => const LoginScreen(),
+        '/signup': (_) => const SignupScreen(),
+      },
     );
   }
 }
